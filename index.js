@@ -1,6 +1,5 @@
 
 // Utility Functions
-
 /**
  * Capitalizes the first letter of each word in the input string.
  * @param {string} input - The input string.
@@ -16,7 +15,7 @@ function capitalizeWords(input) {
  * @returns {Array} - An array of active user objects.
  */
 function filterActiveUsers(users) {
-    return users.filter(user => user.isActive);
+    return users.filter(user => user.active === true);
 }
 
 /**
@@ -27,7 +26,9 @@ function filterActiveUsers(users) {
  */
 function logAction(action, username) {
     const timestamp = new Date().toISOString();
-    return `User ${username} performed ${action} at ${timestamp}`;
+    const actionLabel = typeof action === 'string' && action.trim() ? action : 'unknown action';
+    const usernameLabel = typeof username === 'string' && username.trim() ? username : 'unknown user';
+    return `User ${usernameLabel} performed ${actionLabel} at ${timestamp}`;
 }
 
 module.exports = { capitalizeWords, filterActiveUsers, logAction };
